@@ -5,19 +5,19 @@ const babel = require('gulp-babel');
 const jasmineNode = require('gulp-jasmine-node');
 
 const PATHS = {
-    srcs: ['src/**/*.js'],
-    specs: ['test/**/*.spec.js'],
-    builtSpecs: ['dist/**/*.spec.js'],
+    sourceFiles: ['src/**/*.js'],
+    testFiles: ['test/**/*.js'],
+    specs: ['dist/**/*.spec.js'],
     dist: 'dist'
 };
 
-PATHS.files = PATHS.srcs.concat(PATHS.specs);
+PATHS.files = PATHS.sourceFiles.concat(PATHS.testFiles);
 
 gulp.task('clean', done =>
     del(PATHS.dist, done));
 
 gulp.task('test', _ =>
-    gulp.src(PATHS.builtSpecs)
+    gulp.src(PATHS.specs)
         .pipe(jasmineNode()));
 
 gulp.task('build', _ =>
